@@ -15,13 +15,13 @@ module BulletinBoard
       end
 
       def call(params)
-        data = yield validate_inspection(params)
+        data = yield validate_contract(params)
         create_ad(data.to_h)
       end
 
       private
 
-      def validate_inspection(params)
+      def validate_contract(params)
         AdSchemaValidator.call(**params)
                          .to_monad
                          .or { |result| Failure([:unprocessable_entity, result.errors.to_h]) }
