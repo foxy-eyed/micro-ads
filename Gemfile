@@ -31,4 +31,11 @@ gem "rake"
 
 group :test, :development do
   gem "rubocop", require: false
+  gem "rubocop-rspec"
+end
+
+group :test do
+  gem "rack-test"
+  gem "rspec"
+  gem "simplecov", require: false
 end
