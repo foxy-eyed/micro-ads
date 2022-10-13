@@ -6,7 +6,6 @@ SimpleCov.start "custom_profile"
 ENV["APP_ENV"] ||= "test"
 
 require_relative "../config/boot"
-require "rack/test"
 Dir[File.expand_path("support/**/*.rb", __dir__)].each { |f| require f }
 
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration

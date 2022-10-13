@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "hanami/validations"
-
 module HTTP
   module Actions
     class Base < Hanami::Action
