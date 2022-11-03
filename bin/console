@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require_relative "../config/environment"
+require_relative "../config/boot"
+
+puts "Loading #{ENV.fetch('APP_ENV')} environment"
+
+require "irb"
+IRB.start(__FILE__)

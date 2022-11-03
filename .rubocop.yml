@@ -1,6 +1,9 @@
 AllCops:
   NewCops: enable
   SuggestExtensions: false
+  Exclude:
+    - "bin/**"
+    - "vendor/**/*"
 
 Layout/SpaceInLambdaLiteral:
   EnforcedStyle: require_space

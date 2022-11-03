@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+require_relative "../config/environment"
+require_relative "../config/boot"
+
+def system!(*args)
+  system(*args) || abort("\n== Command #{args} failed ==")
+end
+
+APP_ROOT = File.expand_path("..", __dir__)
+
+FileUtils.chdir APP_ROOT do
+  puts "\n== Starting server =="
+  system! "bundle exec rackup apps/http/config.ru -p #{ENV.fetch('PORT', 9292)}"
+end
