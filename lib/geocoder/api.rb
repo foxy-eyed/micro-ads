@@ -10,6 +10,8 @@ module Geocoder
       request(:post, "coordinates", { city: city })
     end
 
+    private
+
     def request(verb, path, params = {})
       response = client.send(verb, path, params)
       status = response.status
