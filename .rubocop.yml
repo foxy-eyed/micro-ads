@@ -3,6 +3,7 @@ AllCops:
   SuggestExtensions: false
   Exclude:
     - "bin/**"
+    - "db/**"
     - "vendor/**/*"
 
 Layout/SpaceInLambdaLiteral:
