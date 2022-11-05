@@ -8,6 +8,8 @@ Sequel.migration do
       column :description, "text", :null=>false
       column :created_at, "timestamp without time zone", :default=>Sequel::CURRENT_TIMESTAMP, :null=>false
       column :updated_at, "timestamp without time zone", :default=>Sequel::CURRENT_TIMESTAMP, :null=>false
+      column :latitude, "double precision"
+      column :longitude, "double precision"
     end
     
     create_table(:schema_info) do
