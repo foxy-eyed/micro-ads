@@ -75,6 +75,11 @@ GEM
       dry-core (~> 0.5, >= 0.5)
       dry-initializer (~> 3.0)
       dry-schema (~> 1.8, >= 1.8.0)
+    faraday (2.2.0)
+      faraday-net_http (~> 2.0)
+      ruby2_keywords (>= 0.0.4)
+    faraday-net_http (2.0.1)
+    faraday-retry (1.0.3)
     hanami-api (0.2.0)
       hanami-router (~> 2.0.alpha)
     hanami-router (2.0.0.alpha6)
@@ -154,6 +159,8 @@ DEPENDENCIES
   dry-struct (= 1.0)
   dry-system (= 0.25)
   dry-types (= 1.5)
+  faraday
+  faraday-retry
   hanami-api
   hanami-controller!
   hanami-validations!

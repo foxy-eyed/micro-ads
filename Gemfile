@@ -27,6 +27,11 @@ gem "dry-types", "1.5"
 gem "pg"
 gem "sequel"
 
+# http calls
+gem "faraday"
+gem "faraday-retry"
+
+# other
 gem "rake"
 
 group :test, :development do
