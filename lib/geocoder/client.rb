@@ -7,11 +7,7 @@ module Geocoder
     attr_reader :connection
 
     def initialize(connection = nil)
-      @connection = connection
-    end
-
-    def connection
-      @connection ||= build_connection
+      @connection = connection || build_connection
     end
 
     def request(verb, path, params = {})

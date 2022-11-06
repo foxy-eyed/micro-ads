@@ -1,23 +1,9 @@
 # frozen_string_literal: true
 
 describe "Create Ad", type: :request do
-  include ExternalRequestHelper
-
   subject(:create_ad) { post "/ads", params }
 
   let(:db) { Container["persistence.db"] }
-
-  before do
-    stubs.post("/coordinates", { city: "Limassol" }.to_json) do
-      [200, { "Content-Type" => "application/json" }, { latitude: 34.707130, longitude: 33.022617 }.to_json]
-    end
-
-    stubs.post("/coordinates", { city: "Unknown" }.to_json) do
-      [404, { "Content-Type" => "application/json" }, { error: "Cannot locate 'Unknown'" }.to_json]
-    end
-
-    Container.stub("geocoder.client", Geocoder::Client.new(connection))
-  end
 
   context "with valid params" do
     let(:params) do
