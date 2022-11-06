@@ -35,11 +35,14 @@ gem "faraday-retry"
 gem "rake"
 
 group :test, :development do
+  gem "faker"
   gem "rubocop", require: false
   gem "rubocop-rspec"
 end
 
 group :test do
+  gem "database_cleaner-sequel"
+  gem "factory_bot"
   gem "rack-test"
   gem "rspec"
   gem "simplecov", require: false

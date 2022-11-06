@@ -4,7 +4,7 @@ module BulletinBoard
   module Types
     include Dry.Types()
 
-    CITY_REGEX = /\A[[:alpha:]]+([\s\-]?[[:alpha:]]+)*\z/
+    CITY_REGEX = /\A[[:alpha:]]+([\s\-']?[[:alpha:]]+)*\z/
 
     Id = Params::Integer.constrained(gt: 0)
 

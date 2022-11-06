@@ -40,7 +40,7 @@ module BulletinBoard
         coordinates = geocoder_api.coordinates(ad.city)
         updated_ad = ads_repo.update(ad.id, coordinates)
         Success(updated_ad)
-      rescue Geocoder::API::Error
+      rescue Geocoder::Client::Error
         # Not for production (normally would do async API call).
         # Decided to return an ad object even without coordinates.
         # Also need to track exceptions (at least for ex. send to Sentry).

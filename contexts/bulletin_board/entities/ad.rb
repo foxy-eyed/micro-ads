@@ -10,8 +10,8 @@ module BulletinBoard
       attribute :title, BulletinBoard::Types::AdTitle
       attribute :description, BulletinBoard::Types::AdDescription
       attribute :city, BulletinBoard::Types::AdCity
-      attribute :latitude, Core::Types::Latitude.optional
-      attribute :longitude, Core::Types::Longitude.optional
+      attribute? :latitude, Core::Types::Latitude.optional
+      attribute? :longitude, Core::Types::Longitude.optional
 
       def type
         "ads"
