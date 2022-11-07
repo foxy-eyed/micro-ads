@@ -18,6 +18,9 @@ Metrics/BlockLength:
 Metrics/MethodLength:
   CountAsOne: ["array", "heredoc"]
 
+Naming/MethodParameterName:
+  MinNameLength: 2
+
 Style/Documentation:
   Enabled: false
 

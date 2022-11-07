@@ -7,13 +7,15 @@ describe "Fetch Ads", type: :request do
 
   before do
     (1..3).each do |i|
-      db[:ads].insert(user_id: i, title: "Title #{i}", city: "City #{i}", description: "Text #{i}")
+      db[:ads].insert(
+        user_id: i,
+        title: Faker::Lorem.sentence,
+        city: Faker::Address.city,
+        description: Faker::Lorem.sentence,
+        latitude: Faker::Address.latitude,
+        longitude: Faker::Address.longitude
+      )
     end
-  end
-
-  after do
-    # drop data
-    db[:ads].delete
   end
 
   it "responds with 200" do

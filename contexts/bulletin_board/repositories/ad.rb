@@ -21,6 +21,11 @@ module BulletinBoard
         model(row)
       end
 
+      def update(id, data)
+        ads.where(id: id).update(**data)
+        find(id)
+      end
+
       def create(data)
         id = ads.insert(**data)
         find(id)

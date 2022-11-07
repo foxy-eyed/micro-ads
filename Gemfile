@@ -27,14 +27,21 @@ gem "dry-types", "1.5"
 gem "pg"
 gem "sequel"
 
+# http calls
+gem "faraday"
+gem "faraday-retry"
+
+# other
 gem "rake"
 
 group :test, :development do
+  gem "faker"
   gem "rubocop", require: false
   gem "rubocop-rspec"
 end
 
 group :test do
+  gem "database_cleaner-sequel"
   gem "rack-test"
   gem "rspec"
   gem "simplecov", require: false
