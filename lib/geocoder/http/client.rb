@@ -23,7 +23,7 @@ module Geocoder
       private
 
       def build_connection
-        Faraday.new(url: ENV.fetch("GEOCODER_API_URL")) do |conn|
+        Faraday.new(url: ENV.fetch("GEOCODER_HTTP_API_URL")) do |conn|
           conn.request :retry, { retry_statuses: [500], interval: 0.05 }
           conn.request :json
           conn.request :json, content_type: "application/json"

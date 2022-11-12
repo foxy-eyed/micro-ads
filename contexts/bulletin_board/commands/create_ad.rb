@@ -7,7 +7,8 @@ module BulletinBoard
       include Dry::Monads::Do.for(:call)
       include Import[
                 ads_repo: "contexts.bulletin_board.repositories.ad",
-                geocoder_api: "geocoder.http.api"
+                geocoder_sync: "geocoder.http.api",
+                geocoder_async: "geocoder.rpc.api"
               ]
 
       AdSchemaValidator = Dry::Schema.Params do
@@ -20,7 +21,7 @@ module BulletinBoard
       def call(params)
         data = yield validate_contract(params)
         ad = yield create_ad(data.to_h)
-        fetch_coordinates(ad)
+        geocode(ad)
       end
 
       private
@@ -36,14 +37,28 @@ module BulletinBoard
                                                     .or { |result| Failure([:db_error, result.exception.message]) }
       end
 
-      def fetch_coordinates(ad)
-        coordinates = geocoder_api.coordinates(ad.city)
+      def geocode(ad)
+        case ENV["GEOCODER_MODE"]
+        when "sync"
+          geocode_now(ad)
+        when "async"
+          geocode_later(ad)
+        end
+      end
+
+      def geocode_now(ad)
+        coordinates = geocoder_sync.coordinates(ad.city)
         updated_ad = ads_repo.update(ad.id, coordinates)
         Success(updated_ad)
       rescue Geocoder::Error
         # Not for production (normally would do async API call).
         # Decided to return an ad object even without coordinates.
         # Also need to track exceptions (at least for ex. send to Sentry).
+        Success(ad)
+      end
+
+      def geocode_later(ad)
+        geocoder_async.geocode_later(ad)
         Success(ad)
       end
     end
