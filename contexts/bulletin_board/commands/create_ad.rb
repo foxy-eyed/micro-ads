@@ -7,7 +7,7 @@ module BulletinBoard
       include Dry::Monads::Do.for(:call)
       include Import[
                 ads_repo: "contexts.bulletin_board.repositories.ad",
-                geocoder_api: "geocoder.api"
+                geocoder_api: "geocoder.http.api"
               ]
 
       AdSchemaValidator = Dry::Schema.Params do
@@ -40,7 +40,7 @@ module BulletinBoard
         coordinates = geocoder_api.coordinates(ad.city)
         updated_ad = ads_repo.update(ad.id, coordinates)
         Success(updated_ad)
-      rescue Geocoder::Client::Error
+      rescue Geocoder::Error
         # Not for production (normally would do async API call).
         # Decided to return an ad object even without coordinates.
         # Also need to track exceptions (at least for ex. send to Sentry).

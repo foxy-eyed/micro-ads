@@ -2,7 +2,7 @@
 
 class GeocoderFakeClient
   def initialize
-    @client = Geocoder::Client.new(fake_connection)
+    @client = Geocoder::HTTP::Client.new(fake_connection)
   end
 
   def request(*args)

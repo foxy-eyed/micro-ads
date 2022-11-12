@@ -10,7 +10,7 @@ Dir[File.expand_path("support/**/*.rb", __dir__)].each { |f| require f }
 
 require "dry/system/stubs"
 Container.enable_stubs!
-Container.stub("geocoder.client", GeocoderFakeClient.new)
+Container.stub("geocoder.http.client", GeocoderFakeClient.new)
 Container.finalize!
 
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
