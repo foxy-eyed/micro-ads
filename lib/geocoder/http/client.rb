@@ -3,6 +3,8 @@
 module Geocoder
   module HTTP
     class Client
+      include API
+
       attr_reader :connection
 
       def initialize(connection = nil)

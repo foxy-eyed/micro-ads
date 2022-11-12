@@ -28,6 +28,10 @@ class Container < Dry::System::Container
     # libraries
     config.component_dirs.add "lib" do |dir|
       dir.memoize = true
+
+      dir.auto_register = proc do |component|
+        !component.identifier.start_with?("geocoder") || component.identifier.include?("geocoder.service")
+      end
     end
 
     # business logic

@@ -7,8 +7,7 @@ module BulletinBoard
       include Dry::Monads::Do.for(:call)
       include Import[
                 ads_repo: "contexts.bulletin_board.repositories.ad",
-                geocoder_sync: "geocoder.http.api",
-                geocoder_async: "geocoder.rpc.api"
+                geocoder: "geocoder.service"
               ]
 
       AdSchemaValidator = Dry::Schema.Params do
@@ -38,27 +37,17 @@ module BulletinBoard
       end
 
       def geocode(ad)
-        case ENV["GEOCODER_MODE"]
-        when "sync"
-          geocode_now(ad)
-        when "async"
-          geocode_later(ad)
+        result = geocoder.geocode(ad.id, ad.city)
+        if geocoder.sync?
+          updated_ad = ads_repo.update(ad.id, result)
+          Success(updated_ad)
+        else
+          Success(ad)
         end
-      end
-
-      def geocode_now(ad)
-        coordinates = geocoder_sync.coordinates(ad.city)
-        updated_ad = ads_repo.update(ad.id, coordinates)
-        Success(updated_ad)
       rescue Geocoder::Error
-        # Not for production (normally would do async API call).
+        # Can raise from HTTP call. Not for production (normally would do async RPC call).
         # Decided to return an ad object even without coordinates.
         # Also need to track exceptions (at least for ex. send to Sentry).
-        Success(ad)
-      end
-
-      def geocode_later(ad)
-        geocoder_async.geocode_later(ad)
         Success(ad)
       end
     end

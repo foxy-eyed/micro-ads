@@ -3,6 +3,8 @@
 module Geocoder
   module RPC
     class Client
+      include API
+
       attr_reader :queue
 
       def initialize(queue = nil)
