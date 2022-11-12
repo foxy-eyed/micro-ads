@@ -27,5 +27,8 @@ Style/Documentation:
 Style/HashSyntax:
   EnforcedShorthandSyntax: either
 
+Style/MultilineBlockChain:
+  Enabled: false
+
 Style/StringLiterals:
   EnforcedStyle: double_quotes
