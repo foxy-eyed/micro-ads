@@ -21,6 +21,10 @@ class Container < Dry::System::Container
   require "dry/monads/do"
 
   configure do |config|
+    config.inflector = Dry::Inflector.new do |inflections|
+      inflections.acronym("RPC")
+    end
+
     # libraries
     config.component_dirs.add "lib" do |dir|
       dir.memoize = true

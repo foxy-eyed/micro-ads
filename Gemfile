@@ -12,6 +12,9 @@ gem "zeitwerk"
 gem "dotenv"
 
 # transport
+gem "bunny"
+gem "faraday"
+gem "faraday-retry"
 gem "hanami-api"
 gem "hanami-controller", git: "https://github.com/hanami/controller.git", tag: "v2.0.0.beta1"
 gem "hanami-validations", git: "https://github.com/hanami/validations.git", tag: "v2.0.0.beta1"
@@ -26,10 +29,6 @@ gem "dry-struct", "1.0"
 gem "dry-types", "1.5"
 gem "pg"
 gem "sequel"
-
-# http calls
-gem "faraday"
-gem "faraday-retry"
 
 # other
 gem "rake"
