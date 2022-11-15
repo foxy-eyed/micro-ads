@@ -43,7 +43,19 @@ Params (required):
   description: 'Sweet, furry =^.^='
 }
 ```
-### To run tests
+### Update ad
+`PATCH http://localhost:9292/ads/:id`
+
+Params (required):
+```
+{
+  coordinates: {
+    latitude: 55.7540471,
+    longitude: 37.620405
+  }
+}
+```
+## To run tests
 ```
 bundle exec rspec
 ```
