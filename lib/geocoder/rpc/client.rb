@@ -11,15 +11,15 @@ module Geocoder
         @queue = queue || create_queue
       end
 
-      def publish(payload, options = {})
-        queue.publish(payload, options.merge(persistent: true, app_id: "ads"))
-      end
-
       private
 
       def create_queue
         channel = Core::RabbitMq.channel
         channel.queue("geocoding", durable: true)
+      end
+
+      def publish(payload, options = {})
+        queue.publish(payload, options.merge(persistent: true, app_id: "ads"))
       end
     end
   end
