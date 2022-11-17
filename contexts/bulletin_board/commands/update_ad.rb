@@ -30,7 +30,7 @@ module BulletinBoard
 
       def update_ad(data)
         ad = ads_repo.find(data[:id])
-        return Failure([:not_found, { id: data[:id] }]) unless ad
+        return Failure([:not_found, "Record ##{data[:id]} does not exist"]) unless ad
 
         Try[Sequel::Error] do
           ads_repo.update(ad.id, data[:coordinates])

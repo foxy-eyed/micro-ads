@@ -15,6 +15,8 @@ module HTTP
         in Success[value]
           res.status = 200
           res.body = render_json(value, req)
+        in Failure[:not_found, error]
+          halt 404, { error: error }.to_json
         in Failure[:unprocessable_entity, errors]
           halt 422, { errors: errors }.to_json
         in Failure[:db_error, error]

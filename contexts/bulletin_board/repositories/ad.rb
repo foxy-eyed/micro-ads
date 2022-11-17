@@ -18,7 +18,7 @@ module BulletinBoard
 
       def find(id)
         row = ads.first(id: id)
-        model(row)
+        model(row) if row
       end
 
       def update(id, data)
