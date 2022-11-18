@@ -7,6 +7,10 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore logs
+/log/*
+!/log/.keep
+
 # Ignore env variables in development
 .env
 .env.development

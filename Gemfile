@@ -31,6 +31,7 @@ gem "pg"
 gem "sequel"
 
 # other
+gem "rack-ougai"
 gem "rake"
 
 group :test, :development do

@@ -8,6 +8,8 @@ Container.register_provider(:db) do
   end
 
   start do
+    target.start :logger
+
     db = Sequel.postgres(
       host: ENV.fetch("POSTGRES_HOST", "localhost"),
       user: ENV["POSTGRES_USER"],
@@ -15,6 +17,8 @@ Container.register_provider(:db) do
       database: ENV.fetch("POSTGRES_DB", "micro_ads_#{ENV['APP_ENV']}")
     )
     db.extension(:pagination)
+
+    db.loggers.push(target[:logger])
 
     register("persistence.db", db)
   end
