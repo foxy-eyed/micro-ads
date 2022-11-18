@@ -9,7 +9,8 @@ Container.register_provider(:logger) do
 
     logger = Ougai::Logger.new(logger_io, level: log_level)
     logger.before_log = lambda do |data|
-      data[:service] = { name: ENV.fetch("APP_NAME", "ads") }
+      data[:service] = { name: ENV.fetch("APP_NAME") }
+      data[:request_id] ||= Thread.current[:request_id]
     end
 
     register(:logger, logger)

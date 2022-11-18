@@ -3,6 +3,7 @@ name: Lint and test
 on: [push]
 
 env:
+  APP_NAME: ads
   POSTGRES_DB: micro_ads
   POSTGRES_USER: postgres
   POSTGRES_PASSWORD: postgres

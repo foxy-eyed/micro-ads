@@ -51,9 +51,15 @@ module AuthService
         self.correlation_id = SecureRandom.uuid
 
         lock.synchronize do
-          queue.publish(payload, options.merge(app_id: "ads",
-                                               reply_to: reply_queue.name,
-                                               correlation_id: @correlation_id))
+          queue.publish(
+            payload,
+            options.merge(
+              app_id: ENV.fetch("APP_NAME"),
+              reply_to: reply_queue.name,
+              correlation_id: @correlation_id,
+              headers: { request_id: Thread.current[:request_id] }
+            )
+          )
           condition.wait(lock)
         end
       end
