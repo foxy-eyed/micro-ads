@@ -4,6 +4,7 @@ module HTTP
   module Actions
     class Base < Hanami::Action
       include Dry::Monads[:result]
+      include Import[logger: "logger"]
 
       def render_json(object, req)
         case object
@@ -11,6 +12,14 @@ module HTTP
           collection_json(collection, stats, req)
         else
           single_resource_json(object)
+        end
+      end
+
+      def log(action, result)
+        if result.success?
+          logger.info(action, status: "success", details: result.value!.to_h)
+        else
+          logger.info(action, status: "failure", details: result.failure)
         end
       end
 
