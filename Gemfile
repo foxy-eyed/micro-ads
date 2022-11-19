@@ -36,6 +36,7 @@ gem "rack-request-id"
 gem "rake"
 
 group :test, :development do
+  gem "amazing_print"
   gem "faker"
   gem "rubocop", require: false
   gem "rubocop-rspec"

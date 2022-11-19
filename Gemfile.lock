@@ -19,6 +19,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    amazing_print (1.4.0)
     amq-protocol (2.3.2)
     ast (2.4.2)
     bunny (2.19.0)
@@ -177,6 +178,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  amazing_print
   bunny
   database_cleaner-sequel
   dotenv
