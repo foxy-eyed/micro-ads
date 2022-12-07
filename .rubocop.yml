@@ -17,6 +17,7 @@ Metrics/BlockLength:
 
 Metrics/MethodLength:
   CountAsOne: ["array", "heredoc"]
+  Max: 15
 
 Naming/MethodParameterName:
   MinNameLength: 2
@@ -26,6 +27,9 @@ Style/Documentation:
 
 Style/HashSyntax:
   EnforcedShorthandSyntax: either
+
+Style/MultilineBlockChain:
+  Enabled: false
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes

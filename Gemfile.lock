@@ -19,7 +19,12 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    amazing_print (1.4.0)
+    amq-protocol (2.3.2)
     ast (2.4.2)
+    bunny (2.19.0)
+      amq-protocol (~> 2.3, >= 2.3.1)
+      sorted_set (~> 1, >= 1.0.2)
     concurrent-ruby (1.1.10)
     database_cleaner-core (2.0.1)
     database_cleaner-sequel (2.0.2)
@@ -105,6 +110,9 @@ GEM
       hansi (~> 0.2.0)
       mustermann (= 1.1.1)
     nio4r (2.5.8)
+    oj (3.13.23)
+    ougai (2.0.0)
+      oj (~> 3.10)
     parallel (1.22.1)
     parser (3.1.2.1)
       ast (~> 2.4.1)
@@ -112,10 +120,15 @@ GEM
     puma (5.6.5)
       nio4r (~> 2.0)
     rack (2.2.4)
+    rack-ougai (0.3.0)
+      ougai (~> 2.0)
+      rack (~> 2.0)
+    rack-request-id (0.0.4)
     rack-test (2.0.2)
       rack (>= 1.3)
     rainbow (3.1.1)
     rake (13.0.6)
+    rbtree (0.4.5)
     regexp_parser (2.5.0)
     rexml (3.2.5)
     rspec (3.11.0)
@@ -147,12 +160,16 @@ GEM
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.5)
     sequel (5.60.1)
+    set (1.0.3)
     simplecov (0.21.2)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.3)
+    sorted_set (1.0.3)
+      rbtree
+      set (~> 1.0)
     unicode-display_width (2.2.0)
     zeitwerk (2.6.0)
 
@@ -161,6 +178,8 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  amazing_print
+  bunny
   database_cleaner-sequel
   dotenv
   dry-monads (= 1.3)
@@ -176,6 +195,8 @@ DEPENDENCIES
   hanami-validations!
   pg
   puma
+  rack-ougai
+  rack-request-id
   rack-test
   rake
   rspec

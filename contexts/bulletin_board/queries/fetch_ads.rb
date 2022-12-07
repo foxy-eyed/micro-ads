@@ -11,7 +11,7 @@ module BulletinBoard
           dataset = ads_repo.all(params)
           ads = dataset.to_a
           { collection: ads, stats: { pages: dataset.pages, total: dataset.total } }
-        end.to_result.or { |result| Failure([:db_error, result.exception.message]) } # rubocop:disable Style/MultilineBlockChain
+        end.to_result.or { |result| Failure([:db_error, result.exception.message]) }
       end
     end
   end

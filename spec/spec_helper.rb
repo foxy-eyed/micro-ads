@@ -8,11 +8,6 @@ ENV["APP_ENV"] ||= "test"
 require_relative "../config/boot"
 Dir[File.expand_path("support/**/*.rb", __dir__)].each { |f| require f }
 
-require "dry/system/stubs"
-Container.enable_stubs!
-Container.stub("geocoder.client", GeocoderFakeClient.new)
-Container.finalize!
-
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   config.include Dry::Monads[:result]
