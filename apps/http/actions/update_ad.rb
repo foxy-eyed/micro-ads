@@ -10,6 +10,7 @@ module HTTP
 
       def handle(req, res)
         result = command.call(**req.params.to_h)
+        log("update ad coordinates", result)
 
         case result
         in Success[value]
